@@ -26,7 +26,7 @@ export class UtentiComponent {
   constructor(protected http: HttpService, private dialog: MatDialog, public jwtService: JwtService) { }
 
   ngOnInit() {
-    this.http.getEntita('http://catalogo-messier.onrender.com/api/entita/utenti').subscribe(
+    this.http.getEntita('https://catalogo-messier.onrender.com/api/entita/utenti').subscribe(
       {
         next: (response) => {
           this.utenti = response;
@@ -50,7 +50,7 @@ export class UtentiComponent {
   }
 
   getUtenti(){
-    this.http.getEntita('http://catalogo-messier.onrender.com/api/entita/utenti').subscribe(
+    this.http.getEntita('https://catalogo-messier.onrender.com/api/entita/utenti').subscribe(
       {
         next: (response) => {
           this.utenti = response;
@@ -77,7 +77,7 @@ export class UtentiComponent {
     })
       .afterClosed().subscribe( val => {
       if (val === 'delete') {
-        this.http.deleteEntita(id,'http://catalogo-messier.onrender.com/api/entita/utenti/').subscribe(()=>{this.getUtenti()});
+        this.http.deleteEntita(id,'https://catalogo-messier.onrender.com/api/entita/utenti/').subscribe(()=>{this.getUtenti()});
 
       }
     });
@@ -95,7 +95,7 @@ export class UtentiComponent {
     var toBeDeleted = this.dataSource.data.filter(source => source.isDeleted=== true);
     var toBeDeletedCodes = toBeDeleted.map(customer => customer.id);
     console.log(toBeDeletedCodes);
-    this.http.deleteMultiple(toBeDeletedCodes,'http://catalogo-messier.onrender.com/api/entita/utenti/').subscribe({
+    this.http.deleteMultiple(toBeDeletedCodes,'https://catalogo-messier.onrender.com/api/entita/utenti/').subscribe({
       next: () => this.getUtenti(),
       error: (err: any) => console.error('Errore durante l\'eliminazione', err)
     });

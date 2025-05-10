@@ -86,7 +86,7 @@ export class DialogUtenteComponent implements OnInit {
     if (!this.isEditMode) {
       // Modalità creazione
       if (!this.utenteForm.invalid) {
-        this.http.insertEntita(this.utenteForm.value, 'http://catalogo-messier.onrender.com/api/entita/utenti')
+        this.http.insertEntita(this.utenteForm.value, 'https://catalogo-messier.onrender.com/api/entita/utenti')
           .subscribe({
             next:(res)=>{
               this.openDialogResponse("Utente aggiunto con successo");
@@ -119,7 +119,7 @@ export class DialogUtenteComponent implements OnInit {
         delete data.password;
       }
       
-      this.http.updateEntita(data, 'http://catalogo-messier.onrender.com/api/entita/utenti')
+      this.http.updateEntita(data, 'https://catalogo-messier.onrender.com/api/entita/utenti')
         .subscribe({
           next: (res)=>{
             this.openDialogResponse("Utente aggiornato con successo");

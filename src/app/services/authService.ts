@@ -21,7 +21,7 @@ interface ChangePasswordPayload {
 export class AuthService implements CanActivate {
 
   register(newUser: UserDTO) {
-    return this.apiService.postEntita(newUser, 'http://catalogo-messier.onrender.com/api/registration/register')
+    return this.apiService.postEntita(newUser, 'https://catalogo-messier.onrender.com/api/registration/register')
       .pipe(
         map(response => {
           // Se il backend ritorna un token (opzionale), puoi salvarlo qui
@@ -68,7 +68,7 @@ export class AuthService implements CanActivate {
   }
 
   login (authData: any){
-    return this.apiService.postEntita(authData, 'http://catalogo-messier.onrender.com/api/auth/login')
+    return this.apiService.postEntita(authData, 'https://catalogo-messier.onrender.com/api/auth/login')
     .pipe(
       map(response => {
         // Supponiamo che response abbia la forma { token: '...' }
@@ -120,7 +120,7 @@ export class AuthService implements CanActivate {
     const headers = token ? new HttpHeaders({ 'Authorization': `Bearer ${token}` }) : undefined;
 
     // Effettua la chiamata PATCH o POST all'endpoint cambio password
-    return this.http.patch(`http://catalogo-messier.onrender.com/api/auth/cambio-password`, data, { headers });
+    return this.http.patch(`https://catalogo-messier.onrender.com/api/auth/cambio-password`, data, { headers });
   }
 
 }

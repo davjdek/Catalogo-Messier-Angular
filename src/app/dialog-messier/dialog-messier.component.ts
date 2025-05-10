@@ -71,7 +71,7 @@ export class DialogMessierComponent implements OnInit {
     this.productForm.updateValueAndValidity();
     if (!this.editdata){
       if(!this.productForm.invalid){
-        this.http.insertEntita(this.productForm.value,'http://catalogo-messier.onrender.com/api/entita/messier')
+        this.http.insertEntita(this.productForm.value,'https://catalogo-messier.onrender.com/api/entita/messier')
           .subscribe({
             next:(res)=>{
               this.openDialogResponse("Oggetto Messier aggiunto con successo");
@@ -94,7 +94,7 @@ export class DialogMessierComponent implements OnInit {
       let data: any = this.productForm.value;
       data.id = this.editdata.id;
   
-      this.http.updateEntita(data, 'http://catalogo-messier.onrender.com/api/entita/messier')
+      this.http.updateEntita(data, 'https://catalogo-messier.onrender.com/api/entita/messier')
         .subscribe({
           next: (res: any) => {
             this.openDialogResponse("Oggetto aggiornato con successo");
@@ -110,7 +110,7 @@ export class DialogMessierComponent implements OnInit {
   }
 
   getTipoOggetto(){
-    this.http.getEntita('http://catalogo-messier.onrender.com/api/tipo_status').subscribe({
+    this.http.getEntita('https://catalogo-messier.onrender.com/api/tipo_status').subscribe({
       next: (res)=>{
         this.tipoOggettoList = Object.values(res);
         console.log (this.tipoOggettoList);},

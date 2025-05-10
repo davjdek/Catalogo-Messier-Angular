@@ -29,7 +29,7 @@ export class MessierComponent {
     }
 
     getMessier(){
-      this.http.getEntita('http://catalogo-messier.onrender.com/api/entita/messier').subscribe(
+      this.http.getEntita('https://catalogo-messier.onrender.com/api/entita/messier').subscribe(
         {
           next: (response) => {
             this.messier = response;
@@ -68,7 +68,7 @@ export class MessierComponent {
     })
       .afterClosed().subscribe( val => {
       if (val === 'delete') {
-        this.http.deleteEntita(id, 'http://catalogo-messier.onrender.com/api/entita/messier/').subscribe(()=>{this.getMessier()});
+        this.http.deleteEntita(id, 'https://catalogo-messier.onrender.com/api/entita/messier/').subscribe(()=>{this.getMessier()});
 
       }
     });
