@@ -1,0 +1,55 @@
+<h1>{{headerText}}</h1>
+<div mat-dialog-content>
+
+  <form [formGroup] = "utenteForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input formControlName = "nome" matInput placeholder="Nome" required>
+      <mat-error *ngIf="utenteForm.controls['nome'].invalid">{{getErrorMessage('nome')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Cognome</mat-label>
+      <input formControlName = "cognome" matInput placeholder="Cognome" required>
+      <mat-error *ngIf="utenteForm.controls['cognome'].invalid">{{getErrorMessage('cognome')}}</mat-error>
+    </mat-form-field>
+
+    <label for=""><h3>Attivo</h3></label>
+    <mat-checkbox formControlName = "attivo" class="example-checkbox"  matInput type = "number">
+    </mat-checkbox>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Username</mat-label>
+      <input formControlName = "username" matInput placeholder="Username" required>
+      <mat-error *ngIf="utenteForm.controls['username'].invalid">{{getErrorMessage('username')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" [class] = "isHidden">
+      <mat-label>Password</mat-label>
+      <input formControlName = "password" matInput [type]="hide ? 'password' : 'text'"  placeholder="Password" required >
+      <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error *ngIf="utenteForm.controls['password'].invalid">{{getErrorMessage('password')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>email</mat-label>
+      <input email formControlName = "email" matInput placeholder="Email">
+      <mat-error *ngIf="utenteForm.controls['email'].invalid">{{getErrorMessage('email')}}</mat-error>
+    </mat-form-field>
+
+
+
+
+
+
+
+  </form>
+
+</div>
+
+<div mat-dialog-action [align]= "'end'">
+  <button class = "generic-button" mat-raised-button color = "warn" mat-dialog-close>Close</button>
+  <button class = "generic-button" mat-raised-button color = "primary" (click) = "addUtente()">{{actionBtn}}</button>
+</div>
+

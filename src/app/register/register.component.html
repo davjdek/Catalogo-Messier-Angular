@@ -1,0 +1,40 @@
+<h1>Registrazione Utente</h1>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>Nome</mat-label>
+    <input matInput placeholder="Nome" name="Nome" [(ngModel)]="nome" required>
+  </mat-form-field> <br>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Cognome</mat-label>
+    <input matInput placeholder="Cognome" name="Cognome" [(ngModel)]="cognome" required>
+  </mat-form-field> <br>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Username</mat-label>
+    <input matInput placeholder="Username" name="Username" [(ngModel)]="username" required>
+  </mat-form-field> <br>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="Email" name="Email" [(ngModel)]="email" type="email" required>
+  </mat-form-field> <br>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Password</mat-label>
+    <input matInput placeholder="Password" name="Password" [(ngModel)]="password" type="password" required>
+  </mat-form-field> <br>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Conferma Password</mat-label>
+    <input matInput placeholder="Conferma Password" name="ConfirmPassword" [(ngModel)]="confirmPassword" type="password" required>
+  </mat-form-field> <br>
+
+  <button mat-button color="primary" (click)="register()">Registrati</button>
+</form>
+
+<span>
+  <h1>Hai già un account?</h1>
+  <a mat-button routerLink="/login">Login</a>
+</span>

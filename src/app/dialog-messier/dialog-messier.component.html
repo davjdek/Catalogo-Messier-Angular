@@ -1,0 +1,86 @@
+<h1>{{headerText}}</h1>
+<div mat-dialog-content>
+
+  <form [formGroup] = "productForm">
+
+    <mat-form-field appearance="outline">
+      <mat-label>Sigla</mat-label>
+      <input formControlName = "sigla" matInput placeholder="Sigla" required>
+      <mat-error *ngIf="productForm?.controls?.['sigla']?.invalid">{{getErrorMessage('sigla')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>URL</mat-label>
+      <input formControlName = "url" matInput placeholder="URL" >
+      <mat-error *ngIf="productForm?.controls?.['url']?.invalid">{{getErrorMessage('url')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Catalogo NGC</mat-label>
+      <input formControlName = "catalogoNgc" matInput placeholder="Catalogo NGC" >
+      <mat-error *ngIf="productForm?.controls?.['catalogoNGC']?.invalid">{{getErrorMessage('catalogoNGC')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Nome comune</mat-label>
+      <input formControlName = "nomeComune" matInput placeholder="Nome comune" >
+      <mat-error *ngIf="productForm?.controls?.['nomeComune']?.invalid">{{getErrorMessage('nomeComune')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Distanza</mat-label>
+      <input formControlName = "distanza" matInput type = "number" required >
+      <mat-error *ngIf="productForm?.controls?.['distanza']?.invalid">{{getErrorMessage('distanza')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Tipo oggetto</mat-label>
+      <mat-select formControlName="tipoOggetto" required>
+        <mat-option *ngFor="let tipo of tipoOggettoList" [value]="tipo">
+          {{ tipo }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="productForm?.controls?.['tipoOggetto']?.invalid">
+        {{ getErrorMessage('tipoOggetto') }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Magnitudo</mat-label>
+      <input formControlName = "magnitudo" matInput type = "number" required>
+      <mat-error *ngIf="productForm?.controls?.['magnitudo']?.invalid">{{getErrorMessage('magnitudo')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Costellazione</mat-label>
+      <input formControlName = "costellazione" matInput placeholder="costellazione" required>
+      <mat-error *ngIf="productForm?.controls?.['catalogoNGC']?.invalid">
+        {{ getErrorMessage('catalogoNGC') }}
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Foto</mat-label>
+      <input formControlName = "foto" matInput placeholder="foto" >
+      <mat-error *ngIf="productForm?.controls?.['foto']?.invalid">{{getErrorMessage('foto')}}</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Descrizione</mat-label>
+      <input formControlName = "descrizione" matInput placeholder="descrizione" >
+      <mat-error *ngIf="productForm?.controls?.['descrizione']?.invalid">{{getErrorMessage('descrizione')}}</mat-error>
+    </mat-form-field>
+
+
+
+
+
+
+  </form>
+
+</div>
+
+<div mat-dialog-action [align]= "'end'">
+  <button class = "generic-button" mat-raised-button color = "warn" mat-dialog-close>Close</button>
+  <button class = "generic-button" mat-raised-button color = "primary" (click) = "addMessier()">{{actionBtn}}</button>
+</div>

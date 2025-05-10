@@ -1,0 +1,19 @@
+<div *ngIf="isLoading" class="loading">
+  Caricamento in corso...
+</div>
+
+<div *ngIf="errorMessage" class="error">
+  {{ errorMessage }}
+</div>
+
+<div *ngIf="!isLoading && !errorMessage && messier">
+
+  <h2>{{ messier.sigla }} - {{ messier.nomeComune || messier.nome || '' }}</h2>
+
+  <img *ngIf="messier.foto" [src]="messier.foto" alt="Foto di {{ messier.sigla }}" style="max-width: 100%; height: auto; margin-bottom: 1rem;">
+
+  <p *ngIf="messier.descrizione">{{ messier.descrizione }}</p>
+
+  <button mat-raised-button color="primary" (click)="goBack()">Torna alla lista</button>
+
+</div>

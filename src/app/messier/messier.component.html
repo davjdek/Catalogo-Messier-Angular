@@ -1,0 +1,87 @@
+  <div>
+    <div>
+      <h2>Catalogo Messier</h2>
+    </div>
+    <div class = "filter-container">
+      <mat-form-field appearance="standard" class="filter">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)">
+      </mat-form-field>
+      <div *appHasPermission="'catalogo:create'">
+      <button (click)="this.addMessier()" class = "generic-button" mat-raised-button color = "primary">Add</button>
+    </div>
+    </div>
+    <table mat-table [dataSource]="dataSource" matSort >
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let myRowData; columns: displayedColumns"></tr>
+
+        <ng-container matColumnDef="sigla">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Sigla</th>
+          <td mat-cell *matCellDef="let element">
+              <span style="color:blue; text-decoration:underline; cursor:pointer;" (click)="goToDetail(element); $event.stopPropagation()">
+                  {{element.sigla}}
+              </span>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="url">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Url</th>
+          <td mat-cell *matCellDef="let row">{{row.url}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="catalogoNgc">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Catalogo NGC</th>
+          <td mat-cell *matCellDef="let row">{{row.catalogoNgc}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="nomeComune">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome comune</th>
+          <td mat-cell *matCellDef="let row">{{row.nomeComune}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="distanza">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Distanza (anni luce)</th>
+          <td mat-cell *matCellDef="let row">
+            {{ row.distanza  | number:'1.2-2':'it-IT' }}
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="tipoOggetto">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Tipo oggetto</th>
+          <td mat-cell *matCellDef="let row">{{row.tipoOggetto}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="magnitudo">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Magnitudo</th>
+          <td mat-cell *matCellDef="let row" >{{row.magnitudo  | number:'1.2-2':'it-IT' }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="costellazione">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Costellazione</th>
+          <td mat-cell *matCellDef="let row">{{row.costellazione}}</td>
+        </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit</th>
+        <td mat-cell *matCellDef="let row">
+            <button class = "generic-button" *appHasPermission="'catalogo:update'" mat-icon-button mat-raised-button (click)="editMessier(row)" color = "primary" >
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Delete</th>
+        <td mat-cell *matCellDef="let row">
+          <button class = "generic-button" mat-icon-button mat-raised-button *appHasPermission="'catalogo:delete'" color = "warn" (click)='this.deleteMessier(row.id);'>
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5,10,25,100]" aria-label = "select page"></mat-paginator>
+
+  </div>
