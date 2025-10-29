@@ -1,0 +1,100 @@
+/* Container generale per centrare il contenuto */
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #f5f7fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #333;
+  }
+  
+  /* Titoli */
+  h1 {
+    font-weight: 600;
+    color: #1976d2; /* Blu primario */
+    margin-bottom: 20px;
+  }
+  
+  /* Form */
+  .example-form {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+  }
+  
+  /* Spaziatura tra i campi */
+  .example-form mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Pulsante login */
+  button[mat-button] {
+    width: 100%;
+    background-color: #1976d2;
+    color: white;
+    font-weight: 600;
+    padding: 12px 0;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+    border: none;
+    cursor: pointer;
+  }
+  
+  button[mat-button]:hover {
+    background-color: #115293;
+  }
+  
+  /* Link logout e cambia password */
+  a {
+    color: #1976d2;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 500;
+    margin-right: 15px;
+    transition: color 0.3s ease;
+  }
+  
+  a:hover {
+    color: #115293;
+  }
+  
+  /* Messaggi di stato */
+  span > h1 {
+    margin-bottom: 15px;
+    font-weight: 500;
+    color: #444;
+  }
+  
+  /* Link Register */
+  a[mat-button][routerLink="/register"] {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 16px;
+    background-color: #e3f2fd;
+    color: #1976d2;
+    border-radius: 4px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+  }
+  
+  a[mat-button][routerLink="/register"]:hover {
+    background-color: #bbdefb;
+  }
+  
+  /* Responsive */
+  @media (max-width: 480px) {
+    .example-form {
+      padding: 20px;
+      width: 90%;
+    }
+  }
+  

@@ -1,0 +1,19 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>
+      <a mat-button routerLink="/home">Home</a>
+    </span>
+    <span class="menu-spacer"></span>
+    <span>
+    <a mat-button routerLink="/login">{{this.display()}}</a>
+    </span>
+    <span class="menu-spacer"></span>
+    <span>
+    <a mat-button routerLink="/messier">Catalogo Messier</a>
+    </span>
+    <span class="menu-spacer"></span>
+    <span>
+      <a mat-button *ngIf="authService.jwtService.hasPermission('utenti:read')" routerLink="/utenti">Utenti</a>
+    </span>
+  </mat-toolbar-row>
+</mat-toolbar>
