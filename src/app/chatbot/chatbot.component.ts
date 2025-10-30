@@ -35,6 +35,7 @@ export class ChatbotComponent implements AfterViewChecked {
   private readonly API_ENDPOINT = `${this.RENDER_API_BASE_URL}/ask`;
 
   constructor(private http: HttpClient) {
+    console.log('ChatbotComponent initialized');
     // Messaggio di benvenuto
     this.messages.push({
       text: 'Ciao! Sono il tuo assistente RAG. Chiedi qualcosa sui cataloghi stellari o su Andromeda...',
@@ -64,9 +65,9 @@ export class ChatbotComponent implements AfterViewChecked {
   }
 
   toggleChat(): void {
+    console.log('Toggle chat clicked, isOpen:', this.isOpen);
     this.isOpen = !this.isOpen;
     if (this.isOpen) {
-      // Scroll quando si apre il chat
       setTimeout(() => {
         this.shouldScroll = true;
       }, 100);
@@ -74,12 +75,23 @@ export class ChatbotComponent implements AfterViewChecked {
   }
 
   sendMessage(): void {
+    console.log('sendMessage called');
+    console.log('Question:', this.question);
+    console.log('isLoading:', this.isLoading);
+    
     const trimmedQuestion = this.question.trim();
     
-    if (!trimmedQuestion || this.isLoading) {
+    if (!trimmedQuestion) {
+      console.log('Question is empty, returning');
+      return;
+    }
+    
+    if (this.isLoading) {
+      console.log('Already loading, returning');
       return;
     }
 
+    console.log('Adding user message');
     // Aggiungi il messaggio dell'utente
     this.messages.push({
       text: trimmedQuestion,
@@ -93,11 +105,14 @@ export class ChatbotComponent implements AfterViewChecked {
     this.question = '';
     this.isLoading = true;
 
-    // USA SUBSCRIBE invece di toPromise()
+    console.log('Starting HTTP request to:', this.API_ENDPOINT);
+    console.log('Request payload:', { question: currentQuestion });
+
     this.http.post<ApiResponse>(this.API_ENDPOINT, { question: currentQuestion })
       .subscribe({
         next: (response) => {
-          // Formatta la risposta con le fonti se disponibili
+          console.log('Response received:', response);
+          
           let answerText = response.answer || 'Risposta vuota ricevuta.';
           
           if (response.source_documents && response.source_documents.length > 0) {
@@ -109,6 +124,7 @@ export class ChatbotComponent implements AfterViewChecked {
             });
           }
 
+          console.log('Adding bot message');
           this.messages.push({
             text: answerText,
             isUser: false,
@@ -117,19 +133,30 @@ export class ChatbotComponent implements AfterViewChecked {
 
           this.shouldScroll = true;
           this.isLoading = false;
+          console.log('isLoading set to false');
         },
-        error: (error: HttpErrorResponse) => {
+        error: (error: any) => {
+          console.error('HTTP Error occurred:', error);
+          console.error('Error status:', error.status);
+          console.error('Error message:', error.message);
+          console.error('Full error object:', JSON.stringify(error, null, 2));
+          
           let errorMessage = 'Si è verificato un errore durante la richiesta.';
           
-          if (error.status === 503) {
-            errorMessage = 'Servizio non pronto (503). Il RAG non è ancora inizializzato.';
-          } else if (error.status === 404) {
-            errorMessage = `Errore 404. L'endpoint non è stato trovato.`;
-          } else {
-            const errorData = error.error?.detail || error.error?.error || error.statusText;
-            errorMessage = `Errore dal server (${error.status}): ${errorData}`;
+          if (error instanceof HttpErrorResponse) {
+            if (error.status === 503) {
+              errorMessage = 'Servizio non pronto (503). Il RAG non è ancora inizializzato.';
+            } else if (error.status === 404) {
+              errorMessage = `Errore 404. L'endpoint non è stato trovato.`;
+            } else if (error.status === 0) {
+              errorMessage = 'Impossibile connettersi al server. Controlla la connessione.';
+            } else {
+              const errorData = error.error?.detail || error.error?.error || error.statusText;
+              errorMessage = `Errore dal server (${error.status}): ${errorData}`;
+            }
           }
 
+          console.log('Adding error message');
           this.messages.push({
             text: `❌ ERRORE: ${errorMessage}`,
             isUser: false,
@@ -138,13 +165,21 @@ export class ChatbotComponent implements AfterViewChecked {
 
           this.shouldScroll = true;
           this.isLoading = false;
+          console.log('isLoading set to false after error');
+        },
+        complete: () => {
+          console.log('HTTP request completed');
         }
       });
+    
+    console.log('Subscribe called, waiting for response...');
   }
 
   onKeyPress(event: KeyboardEvent): void {
+    console.log('Key pressed:', event.key);
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault();
+      console.log('Enter pressed, calling sendMessage');
       this.sendMessage();
     }
   }
