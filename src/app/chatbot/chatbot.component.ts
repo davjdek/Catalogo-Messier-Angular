@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 interface ChatMessage {
@@ -23,10 +23,12 @@ interface ApiResponse {
   styleUrls: ['./chatbot.component.css']
 })
 export class ChatbotComponent {
+  @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
   isOpen = false;
   question = '';
   isLoading = false;
   messages: ChatMessage[] = [];
+  private shouldScroll = false;
   
   private readonly RENDER_API_BASE_URL = 'https://deepthought-4ywi.onrender.com';
   private readonly API_ENDPOINT = `${this.RENDER_API_BASE_URL}/ask`;
@@ -38,6 +40,24 @@ export class ChatbotComponent {
       isUser: false,
       timestamp: new Date()
     });
+  }
+
+  ngAfterViewChecked() {
+    if (this.shouldScroll) {
+      this.scrollToBottom();
+      this.shouldScroll = false;
+    }
+  }
+
+  private scrollToBottom(): void {
+    try {
+      if (this.messagesContainer) {
+        this.messagesContainer.nativeElement.scrollTop = 
+          this.messagesContainer.nativeElement.scrollHeight;
+      }
+    } catch (err) {
+      console.error('Errore durante lo scroll:', err);
+    }
   }
 
   toggleChat(): void {
@@ -72,14 +92,6 @@ export class ChatbotComponent {
         // Formatta la risposta con le fonti se disponibili
         let answerText = response.answer || 'Risposta vuota ricevuta.';
         
-        if (response.source_documents && response.source_documents.length > 0) {
-          answerText += '\n\n📚 Fonti:\n';
-          response.source_documents.forEach((doc, index) => {
-            const title = doc.metadata?.title || `Fonte ${index + 1}`;
-            const source = doc.metadata?.source || 'Fonte non specificata';
-            answerText += `\n• ${title}: ${source}`;
-          });
-        }
 
         this.messages.push({
           text: answerText,
