@@ -1,0 +1,64 @@
+<!-- Bottone floating per aprire il chat -->
+<button 
+  class="chat-toggle-button" 
+  (click)="toggleChat()"
+  [class.chat-open]="isOpen"
+  mat-fab
+  color="primary"
+  aria-label="Toggle chat">
+  <mat-icon>{{ isOpen ? 'close' : 'chat' }}</mat-icon>
+</button>
+
+<!-- Finestra del chat -->
+<div class="chat-window" [class.open]="isOpen">
+  <!-- Header -->
+  <div class="chat-header">
+    <h2>Chat RAG Assistant</h2>
+    <p class="chat-subtitle">Sistema RAG con Cohere, Gemini e dati Wikipedia</p>
+  </div>
+
+  <!-- Area messaggi -->
+  <div class="chat-messages" #messagesContainer>
+    <div 
+      *ngFor="let message of messages" 
+      class="message"
+      [class.user-message]="message.isUser"
+      [class.bot-message]="!message.isUser">
+      <div class="message-content">
+        <div class="message-text">{{ message.text }}</div>
+        <div class="message-time">{{ message.timestamp | date:'HH:mm' }}</div>
+      </div>
+    </div>
+    
+    <!-- Indicatore di caricamento -->
+    <div *ngIf="isLoading" class="message bot-message loading">
+      <div class="message-content">
+        <mat-spinner diameter="20"></mat-spinner>
+        <span class="loading-text">Sto pensando...</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Area input -->
+  <div class="chat-input-area">
+    <mat-form-field appearance="outline" class="chat-input-field">
+      <input 
+        matInput
+        [(ngModel)]="question"
+        (keypress)="onKeyPress($event)"
+        [disabled]="isLoading"
+        placeholder="Scrivi la tua domanda..."
+        autocomplete="off">
+    </mat-form-field>
+    
+    <button 
+      mat-fab 
+      color="primary"
+      (click)="sendMessage()"
+      [disabled]="!question.trim() || isLoading"
+      class="send-button"
+      aria-label="Send message">
+      <mat-icon>send</mat-icon>
+    </button>
+  </div>
+</div>

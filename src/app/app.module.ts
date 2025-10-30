@@ -37,7 +37,7 @@ import { DialogResponseComponent } from './dialog-response/dialog-response.compo
 import {DialogConfirmDeleteComponent} from './dialog-confirm-delete/dialog-confirm-delete.component';
 import {JwtService} from './services/jwt.service';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from './interceptors/interceptor'; // correggi il path
+import { JwtInterceptor } from './interceptors/interceptor';
 import { CambioPasswordComponent } from './cambio-password/cambio-password.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -45,6 +45,10 @@ import { registerLocaleData } from '@angular/common';
 import localeIt from '@angular/common/locales/it';
 import { HasPermissionDirective } from './directives/has-permission.directive';
 import { MessierDetailComponent } from './messier-detail.component/messier-detail.component';
+// ⬇️ AGGIUNGI QUESTA IMPORTAZIONE PER IL CHATBOT
+import { ChatbotComponent } from './chatbot/chatbot.component';
+// ⬇️ AGGIUNGI QUESTA IMPORTAZIONE PER IL LOADING SPINNER
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 registerLocaleData(localeIt);
 
@@ -66,6 +70,7 @@ registerLocaleData(localeIt);
     CambioPasswordComponent,
     HasPermissionDirective,
     MessierDetailComponent,
+    ChatbotComponent, // ⬅️ AGGIUNGI IL CHATBOT COMPONENT
   ],
   imports: [
     BrowserModule,
@@ -91,12 +96,13 @@ registerLocaleData(localeIt);
     RouterModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule,     // da aggiungere se manca
+    ReactiveFormsModule,
     MatSnackBarModule,
-      ],
-      exports:[
-        HasPermissionDirective,
-      ],
+    MatProgressSpinnerModule, // ⬅️ AGGIUNGI QUESTO PER LO SPINNER DI CARICAMENTO
+  ],
+  exports:[
+    HasPermissionDirective,
+  ],
   providers: [
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
