@@ -136,7 +136,7 @@ export class ChatbotComponent implements AfterViewChecked {
     };
 
     console.log('Starting HTTP request to:', this.API_ENDPOINT);
-    console.log('Request payload:', { question: requestPayload });
+    console.log('Request payload:', requestPayload );
 
     this.http.post<ApiResponse>(this.API_ENDPOINT, requestPayload)
       .subscribe({
