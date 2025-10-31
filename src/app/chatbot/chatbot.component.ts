@@ -38,7 +38,7 @@ export class ChatbotComponent implements AfterViewChecked {
     console.log('ChatbotComponent initialized');
     // Messaggio di benvenuto
     this.messages.push({
-      text: 'Ciao! Sono il tuo assistente RAG. Chiedi qualcosa sui cataloghi stellari o su Andromeda...',
+      text: 'Ciao! Sono Pensiero Profondo. Sono qui per rispondere alla domanda fondamentale sulla vita, sull\'Universo e tutto quanto',
       isUser: false,
       timestamp: new Date()
     });
@@ -115,14 +115,7 @@ export class ChatbotComponent implements AfterViewChecked {
           
           let answerText = response.answer || 'Risposta vuota ricevuta.';
           
-          if (response.source_documents && response.source_documents.length > 0) {
-            answerText += '\n\n📚 Fonti:\n';
-            response.source_documents.forEach((doc, index) => {
-              const title = doc.metadata?.title || `Fonte ${index + 1}`;
-              const source = doc.metadata?.source || 'Fonte non specificata';
-              answerText += `\n• ${title}: ${source}`;
-            });
-          }
+          
 
           console.log('Adding bot message');
           this.messages.push({
