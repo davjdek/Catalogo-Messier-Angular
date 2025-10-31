@@ -1,6 +1,18 @@
 import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
+// Formato di un singolo messaggio nello storico (come richiesto dal backend)
+interface ChatHistoryItem {
+  role: 'user' | 'ai'; // 'user' o 'ai' per il backend
+  content: string;
+}
+
+// Formato del payload inviato al backend
+interface ChatRequestPayload {
+  question: string;
+  chat_history: ChatHistoryItem[]; // Lista dello storico
+}
+
 interface ChatMessage {
   text: string;
   isUser: boolean;
@@ -38,7 +50,7 @@ export class ChatbotComponent implements AfterViewChecked {
     console.log('ChatbotComponent initialized');
     // Messaggio di benvenuto
     this.messages.push({
-      text: 'Ciao! Sono Pensiero Profondo. Sono qui per rispondere alla domanda fondamentale sulla vita, sull\'Universo e tutto quanto',
+      text: 'Ciao! Sono Pensiero Profondo. Sono qui per rispondere alla domanda fondamentale sulla vita, sull\'universo e tutto quanto',
       isUser: false,
       timestamp: new Date()
     });
@@ -105,10 +117,28 @@ export class ChatbotComponent implements AfterViewChecked {
     this.question = '';
     this.isLoading = true;
 
-    console.log('Starting HTTP request to:', this.API_ENDPOINT);
-    console.log('Request payload:', { question: currentQuestion });
+    // 1. COSTRUZIONE DELLO STORICO (esclude il messaggio di benvenuto iniziale e la domanda corrente)
+    const chatHistory: ChatHistoryItem[] = [];
+    
+    // Inizia da i=1 per saltare il messaggio di benvenuto. Termina prima dell'ultimo messaggio (la domanda corrente).
+    for (let i = 1; i < this.messages.length - 1; i++) {
+      const msg = this.messages[i];
+      chatHistory.push({
+        role: msg.isUser ? 'user' : 'ai', // 'user' o 'ai'
+        content: msg.text
+      });
+    }
 
-    this.http.post<ApiResponse>(this.API_ENDPOINT, { question: currentQuestion })
+    // 2. COSTRUZIONE DEL PAYLOAD COMPLETO PER FASTAPI
+    const requestPayload: ChatRequestPayload = {
+      question: currentQuestion,
+      chat_history: chatHistory // Invia la cronologia
+    };
+
+    console.log('Starting HTTP request to:', this.API_ENDPOINT);
+    console.log('Request payload:', { question: requestPayload });
+
+    this.http.post<ApiResponse>(this.API_ENDPOINT, requestPayload)
       .subscribe({
         next: (response) => {
           console.log('Response received:', response);
