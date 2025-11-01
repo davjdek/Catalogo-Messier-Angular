@@ -13,7 +13,7 @@
   padding: 30px; /* Usa un padding più flessibile */
   
   background: rgba(255, 255, 255, 0.9); /* Sfondo semi-trasparente */
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); /* Ombra più moderna e meno invasiva */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4); /* Ombra più moderna e meno invasiva */
   
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: black;
