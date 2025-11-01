@@ -3,8 +3,9 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
 /* Imposta un'immagine di sfondo */
-  background-image: url('assets/sfondo.jpg');
-  background-size: auto;
+background-color: deepskyblue;
+  background-image: url('assets/sfondo.png');
+  background-size: 25%;
   background-attachment: fixed; /* Mantiene lo sfondo fisso durante lo scroll */
   background-repeat: repeat;
 }
