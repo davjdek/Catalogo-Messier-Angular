@@ -17,6 +17,7 @@
   
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: black;
+  font-size: large;
   
   width: 70%; /* Aumenta leggermente la larghezza su desktop per un aspetto più ampio */
   max-width: 1200px; /* Limita la larghezza massima su schermi molto grandi */
