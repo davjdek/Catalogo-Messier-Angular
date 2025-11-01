@@ -3,11 +3,11 @@
     <a mat-button routerLink="/home" class="toolbar-logo">Home</a>
 
     <span class="menu-desktop-links">
-      <span class="menu-spacer"></span>
+      
       <a mat-button routerLink="/login">{{this.display()}}</a>
-      <span class="menu-spacer"></span>
+      
       <a mat-button routerLink="/messier">Catalogo Messier</a>
-      <span class="menu-spacer"></span>
+      
       <a mat-button *ngIf="authService.jwtService.hasPermission('utenti:read')" routerLink="/utenti">Utenti</a>
     </span>
 

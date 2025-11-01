@@ -4,6 +4,7 @@
 .menu-desktop-links {
   display: flex; /* Assicura che i link siano in riga */
   align-items: center;
+  gap: 20px; /* Aggiunge 20px di spazio tra gli elementi flex */
   flex-grow: 1; /* Permette ai link di occupare lo spazio disponibile prima dello spacer */
 }
 
