@@ -13,4 +13,8 @@ img {
     background: #f5f7fa;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
+    width: 50%; /* Larghezza del 50% del contenitore */
+    min-width: 300px; /* Ma mai meno di 200px */
+    margin-left: auto;   /* Margine sinistro automatico */
+    margin-right: auto;  /* Margine destro automatico */
   }
