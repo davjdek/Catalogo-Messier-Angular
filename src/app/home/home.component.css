@@ -9,8 +9,8 @@ img {
     align-items: center;
     justify-content: flex-start;
     min-height: 100vh;
-    padding: 40px 20px;
-    background: rgba(245, 247, 250, 0.5);
+    padding: 50px;
+    background: rgba(255, 255, 255, 0.5);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #333;
     width: 50%; /* Larghezza del 50% del contenitore */
