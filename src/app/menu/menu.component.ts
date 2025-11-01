@@ -23,6 +23,13 @@ export class MenuComponent implements OnInit {
     this.cdr.detectChanges();
   }
 
+closeMenu() {
+    // Il mat-menu si chiude automaticamente quando si clicca un mat-menu-item.
+    // Questo metodo è qui principalmente per conformità se lo hai nel template,
+    // o per logica aggiuntiva se volessi controllare un altro componente (es. un mat-sidenav).
+    console.log('Menu item clicked, menu should close (handled by mat-menu itself)');
+  }
+
   ngOnInit(): void {
     this.authService.refresh$.subscribe(() => {
       console.log('MenuComponent: refresh$ triggered');
