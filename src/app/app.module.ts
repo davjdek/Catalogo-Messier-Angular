@@ -49,6 +49,7 @@ import { MessierDetailComponent } from './messier-detail.component/messier-detai
 import { ChatbotComponent } from './chatbot/chatbot.component';
 // ⬇️ AGGIUNGI QUESTA IMPORTAZIONE PER IL LOADING SPINNER
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatMenuModule } from '@angular/material/menu'; // Necessario per il menu a tendina
 
 registerLocaleData(localeIt);
 
@@ -71,6 +72,7 @@ registerLocaleData(localeIt);
     HasPermissionDirective,
     MessierDetailComponent,
     ChatbotComponent, // ⬅️ AGGIUNGI IL CHATBOT COMPONENT
+    
   ],
   imports: [
     BrowserModule,
@@ -99,6 +101,7 @@ registerLocaleData(localeIt);
     ReactiveFormsModule,
     MatSnackBarModule,
     MatProgressSpinnerModule, // ⬅️ AGGIUNGI QUESTO PER LO SPINNER DI CARICAMENTO
+    MatMenuModule,
   ],
   exports:[
     HasPermissionDirective,

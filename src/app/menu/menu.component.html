@@ -1,19 +1,26 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>
-      <a mat-button routerLink="/home">Home</a>
-    </span>
-    <span class="menu-spacer"></span>
-    <span>
-    <a mat-button routerLink="/login">{{this.display()}}</a>
-    </span>
-    <span class="menu-spacer"></span>
-    <span>
-    <a mat-button routerLink="/messier">Catalogo Messier</a>
-    </span>
-    <span class="menu-spacer"></span>
-    <span>
+    <a mat-button routerLink="/home" class="toolbar-logo">Home</a>
+
+    <span class="menu-desktop-links">
+      <span class="menu-spacer"></span>
+      <a mat-button routerLink="/login">{{this.display()}}</a>
+      <span class="menu-spacer"></span>
+      <a mat-button routerLink="/messier">Catalogo Messier</a>
+      <span class="menu-spacer"></span>
       <a mat-button *ngIf="authService.jwtService.hasPermission('utenti:read')" routerLink="/utenti">Utenti</a>
     </span>
+
+    <span class="menu-spacer desktop-spacer"></span>
+
+    <button mat-icon-button [matMenuTriggerFor]="mobileMenu" class="menu-mobile-toggle">
+      <mat-icon>menu</mat-icon>
+    </button>
   </mat-toolbar-row>
 </mat-toolbar>
+
+<mat-menu #mobileMenu="matMenu">
+  <button mat-menu-item routerLink="/login" (click)="closeMenu()">{{this.display()}}</button>
+  <button mat-menu-item routerLink="/messier" (click)="closeMenu()">Catalogo Messier</button>
+  <button mat-menu-item *ngIf="authService.jwtService.hasPermission('utenti:read')" routerLink="/utenti" (click)="closeMenu()">Utenti</button>
+</mat-menu>

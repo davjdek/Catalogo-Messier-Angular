@@ -1,0 +1,59 @@
+/* menu.component.css */
+
+/* --- Stili di base per desktop --- */
+.menu-desktop-links {
+  display: flex; /* Assicura che i link siano in riga */
+  align-items: center;
+  flex-grow: 1; /* Permette ai link di occupare lo spazio disponibile prima dello spacer */
+}
+
+/* Spacer per desktop */
+.menu-spacer {
+  flex: 1 1 auto; /* Spinge gli elementi a destra/sinistra */
+}
+
+/* Nascondi l'hamburger per desktop */
+.menu-mobile-toggle {
+  display: none;
+}
+
+/* Stile per il logo/bottone Home per farlo apparire come parte della toolbar */
+.toolbar-logo {
+  font-weight: bold; /* Esempio: rendi il logo più evidente */
+  font-size: 1.1em;
+}
+
+/* --- Media Query per mobile --- */
+@media (max-width: 768px) {
+  /* Nascondi i link desktop su schermi piccoli */
+  .menu-desktop-links {
+    display: none;
+  }
+
+  /* Nascondi lo spacer extra su mobile (non necessario) */
+  .desktop-spacer {
+    display: none;
+  }
+
+  /* Mostra l'hamburger su schermi piccoli */
+  .menu-mobile-toggle {
+    display: flex; /* Usa flex per centrare l'icona */
+    align-items: center;
+    justify-content: center;
+    margin-left: auto; /* Spinge l'hamburger all'estrema destra */
+  }
+
+  /* Opzionale: Stila le voci del menu a tendina se vuoi un aspetto diverso */
+  .mat-menu-item {
+    font-size: 1.1em;
+    padding: 10px 20px;
+  }
+}
+
+/* Puoi aggiungere un'altra media query per tablet se vuoi un comportamento intermedio */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .menu-desktop-links {
+    /* Potresti voler ridurre il font-size o i margini dei bottoni qui */
+    font-size: 0.9em;
+  }
+}
