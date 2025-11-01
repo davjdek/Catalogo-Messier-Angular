@@ -1,11 +1,49 @@
-/* You can add global styles to this file, and also import other style files */
+//* src/styles.css */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
-/* Imposta un'immagine di sfondo */
-background-color: deepskyblue;
+/* Reset di base per un miglior controllo sui margini/padding */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Assicura che html e body occupino l'intera altezza del viewport */
+}
+
+/* Stili globali per il corpo della pagina */
+body {
+  /* Font: usa 'rem' per una migliore scalabilità su diversi dispositivi */
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 1rem; /* Base di 16px per i 'rem' se non specificato altrove */
+
+  /* Colore di sfondo di fallback nel caso l'immagine non si carichi */
+  background-color: deepskyblue;
+
+  /* Immagine di sfondo */
   background-image: url('assets/sfondo.png');
-  background-size: 25%;
+  background-size: 25%; /* Mantiene l'immagine al 25% delle dimensioni del body */
   background-attachment: fixed; /* Mantiene lo sfondo fisso durante lo scroll */
-  background-repeat: repeat;
+  background-repeat: repeat; /* Ripete l'immagine per coprire lo sfondo */
+
+  /* Assicurati che il corpo abbia sempre l'altezza minima del viewport */
+  min-height: 100vh;
+}
+
+/* Media Query di esempio per la dimensione del font (opzionale) */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.875rem; /* Riduci leggermente la dimensione base del font su schermi più piccoli */
+  }
+}
+
+/* Potresti voler regolare la dimensione dello sfondo su schermi molto grandi o piccoli */
+/* Esempio: Su schermi molto grandi, forse vuoi uno sfondo più piccolo o più grande */
+@media (min-width: 1400px) {
+  body {
+    /* background-size: 20%; */ /* Esempio: riduci ulteriormente su schermi grandi */
+  }
+}
+
+/* Esempio: Su schermi molto piccoli, forse vuoi uno sfondo più grande */
+@media (max-width: 480px) {
+  body {
+    /* background-size: 35%; */ /* Esempio: aumenta su schermi molto piccoli per renderlo più visibile */
+  }
 }
