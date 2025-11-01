@@ -1,4 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+/* Imposta un'immagine di sfondo */
+  background-image: url('assets/sfondo.jpg');
+  background-attachment: fixed; /* Mantiene lo sfondo fisso durante lo scroll */
+  background-repeat: repeat;
+}
