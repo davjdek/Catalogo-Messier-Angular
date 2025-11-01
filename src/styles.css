@@ -1,4 +1,4 @@
-//* src/styles.css */
+/* src/styles.css */
 
 /* Reset di base per un miglior controllo sui margini/padding */
 html, body {
@@ -37,13 +37,13 @@ body {
 /* Esempio: Su schermi molto grandi, forse vuoi uno sfondo più piccolo o più grande */
 @media (min-width: 1400px) {
   body {
-    /* background-size: 20%; */ /* Esempio: riduci ulteriormente su schermi grandi */
+    background-size: 20%; /* Esempio: riduci ulteriormente su schermi grandi */
   }
 }
 
 /* Esempio: Su schermi molto piccoli, forse vuoi uno sfondo più grande */
 @media (max-width: 480px) {
   body {
-    /* background-size: 35%; */ /* Esempio: aumenta su schermi molto piccoli per renderlo più visibile */
+    background-size: 35%; /* Esempio: aumenta su schermi molto piccoli per renderlo più visibile */
   }
 }
