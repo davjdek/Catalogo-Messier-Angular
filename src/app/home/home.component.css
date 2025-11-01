@@ -10,7 +10,8 @@ img {
     justify-content: flex-start;
     min-height: 100vh;
     padding: 50px;
-    background: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 2px 2px 5px grey;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: black;
     width: 50%; /* Larghezza del 50% del contenitore */
