@@ -1,21 +1,54 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Allinea il contenuto all'inizio dell'asse verticale */
+  
+  /* min-height: 100vh; */ 
+  /* COMMENTATO: Se il body ha già min-height: 100vh e questo componente è l'unico contenuto principale, 
+     potrebbe non essere necessario che anche l'host prenda tutta l'altezza. 
+     Se invece vuoi che questo componente specifico (e il suo background) copra sempre l'intera 
+     altezza del viewport indipendentemente dal contenuto del body, puoi lasciarlo. */
 
-img {
-  width:100%;
+  padding: 30px; /* Usa un padding più flessibile */
+  
+  background: rgba(255, 255, 255, 0.9); /* Sfondo semi-trasparente */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombra più moderna e meno invasiva */
+  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: black;
+  
+  width: 70%; /* Aumenta leggermente la larghezza su desktop per un aspetto più ampio */
+  max-width: 1200px; /* Limita la larghezza massima su schermi molto grandi */
+  min-width: 300px; /* Larghezza minima rimane 300px */
+  
+  margin: 20px auto; /* Margin top/bottom di 20px, centrato orizzontalmente */
+  border-radius: 8px; /* Aggiunge bordi arrotondati per un look più moderno */
 }
 
- :host {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    min-height: 100vh;
-    padding: 50px;
-    background: rgba(255, 255, 255, 0.9);
-    box-shadow: 2px 2px 5px grey;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: black;
-    width: 50%; /* Larghezza del 50% del contenitore */
-    min-width: 300px; /* Ma mai meno di 200px */
-    margin-left: auto;   /* Margine sinistro automatico */
-    margin-right: auto;  /* Margine destro automatico */
+/* Media Query per schermi medi (tablet, laptop piccoli) */
+@media (max-width: 1024px) {
+  :host {
+    width: 80%; /* Occupa più spazio su schermi medi */
+    padding: 25px; /* Riduci leggermente il padding */
+  }
+}
+
+/* Media Query per schermi piccoli (mobile) */
+@media (max-width: 768px) {
+  :host {
+    width: 95%; /* Occupa quasi tutta la larghezza su mobile */
+    min-width: unset; /* Rimuovi il min-width per permettere al 95% di funzionare anche su schermi stretti */
+    padding: 15px; /* Riduci ulteriormente il padding */
+    margin: 10px auto; /* Riduci il margine verticale */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Ombra più leggera su mobile */
+  }
+}
+
+/* Media Query per schermi molto piccoli (es. iPhone SE) */
+@media (max-width: 480px) {
+  :host {
+    padding: 10px; /* Padding minimo per non stringere troppo */
+    border-radius: 0; /* Opzionale: rimuovi i bordi arrotondati su schermi molto stretti */
+  }
 }
