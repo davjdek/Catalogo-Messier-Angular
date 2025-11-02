@@ -57,9 +57,31 @@ export class MessierComponent {
   }
 
   addMessier() {
-    this.dialog.open(DialogMessierComponent, {
-      width: '30%'
-    }).afterClosed().subscribe(val=>{if (val==='save') {this.getMessier(); }});
+    // 1. Definisci le configurazioni di default (per desktop/tablet)
+  const dialogConfig: MatDialogConfig = {
+    // Larghezza predefinita per schermi larghi
+    width: '600px', 
+    // Larghezza massima impostata al 90% per evitare che sia troppo grande su schermi enormi
+    maxWidth: '90vw' 
+  };
+
+  // 2. Controlla la dimensione dello schermo
+  // Se la larghezza della finestra è inferiore a 768px (tipico per smartphone)
+  if (window.innerWidth < 768) {
+    // Aggiorna le configurazioni per lo schermo piccolo
+    dialogConfig.width = '100vw'; // Larghezza massima dello schermo
+    dialogConfig.height = '100vh'; // Altezza massima dello schermo (schermo intero)
+    dialogConfig.maxWidth = '100vw';
+  }
+
+  // 3. Apri il dialogo con la configurazione dinamica
+  this.dialog.open(DialogMessierComponent, dialogConfig)
+    .afterClosed()
+    .subscribe(val => {
+      if (val === 'save') {
+        this.getMessier();
+      }
+    });
   }
 
   deleteMessier(id : number){
@@ -75,11 +97,25 @@ export class MessierComponent {
   }
 
   editMessier(row : any){
+    // 1. Definisci le configurazioni di default (per desktop/tablet)
+  const dialogConfig: MatDialogConfig = {
+    // Larghezza predefinita per schermi larghi
+    width: '600px', 
+    // Larghezza massima impostata al 90% per evitare che sia troppo grande su schermi enormi
+    maxWidth: '90vw',
+    data: row 
+  };
+
+  // 2. Controlla la dimensione dello schermo
+  // Se la larghezza della finestra è inferiore a 768px (tipico per smartphone)
+  if (window.innerWidth < 768) {
+    // Aggiorna le configurazioni per lo schermo piccolo
+    dialogConfig.width = '100vw'; // Larghezza massima dello schermo
+    dialogConfig.height = '100vh'; // Altezza massima dello schermo (schermo intero)
+    dialogConfig.maxWidth = '100vw';
+  }
     let config = new MatDialogConfig();
-    this.dialog.open(DialogMessierComponent,{
-      width: '30%',
-      data: row
-    }).afterClosed().subscribe(val=>{if (val==='save') {this.getMessier(); }});
+    this.dialog.open(DialogMessierComponent,dialogConfig).afterClosed().subscribe(val=>{if (val==='save') {this.getMessier(); }});
   }
 
   goToDetail(row: any) {
