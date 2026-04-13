@@ -24,12 +24,12 @@ body {
   min-height: 100vh;
 }
 
-.mat-form-field-label,
+.filter-container .mat-form-field-label,
 .mat-input-element {
   color: white !important;
 }
 
-.mat-form-field-underline {
+.filter-container .mat-form-field-underline {
   background-color: white !important;
 }
 
