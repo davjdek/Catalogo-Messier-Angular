@@ -25,7 +25,7 @@ body {
 }
 
 .mat-form-field-label,
-.mat-input-element {
+.mat-input-element, .mat-form-field-underline {
   color: white !important;
 }
 
