@@ -17,7 +17,6 @@ body {
   background-image: url('assets/Red_Spider_Nebula.png');
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
   background-repeat: no-repeat;
 
   /* Assicurati che il corpo abbia sempre l'altezza minima del viewport */
