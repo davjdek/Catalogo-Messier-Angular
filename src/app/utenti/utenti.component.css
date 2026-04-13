@@ -3,7 +3,6 @@ table {
   border-collapse: collapse;
   width: 100%;
 }
-
 h2 {
   color: white;
 }
@@ -40,3 +39,23 @@ table th {
 .filter-container {
   display: flex ;
 }
+
+.table-responsive {
+  /* Abilita lo scorrimento orizzontale se necessario */
+  overflow-x: auto; 
+  
+  /* Imposta un colore di sfondo (opzionale) per le aree extra */
+  background-color: white; 
+}
+
+/* Questa regola assicura che la tabella sia stretta al 100% all'interno del suo contenitore */
+table {
+  /* ... altre regole ... */
+  min-width: 100%; /* Aggiungi questa per la compatibilità in alcuni casi */
+}
+
+/* Se vuoi assicurarti che l'area di scorrimento sia visibile in Material */
+.mat-table {
+  min-width: 800px; /* Aggiungi un valore minimo se necessario (es. 800px) per forzare lo scorrimento sui dispositivi mobili */
+}
+
