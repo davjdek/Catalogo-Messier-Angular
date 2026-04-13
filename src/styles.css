@@ -25,8 +25,12 @@ body {
 }
 
 .mat-form-field-label,
-.mat-input-element, .mat-form-field-underline {
+.mat-input-element {
   color: white !important;
+}
+
+.mat-form-field-underline {
+  background-color: white !important;
 }
 
 /* Media Query di esempio per la dimensione del font (opzionale) */
