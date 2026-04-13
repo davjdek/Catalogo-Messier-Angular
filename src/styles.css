@@ -30,10 +30,3 @@ body {
     font-size: 0.875rem; /* Riduci leggermente la dimensione base del font su schermi più piccoli */
   }
 }
-
-/* Esempio: Su schermi molto piccoli, forse vuoi uno sfondo più grande */
-@media (max-width: 480px) {
-  body {
-    background-size: 35%; /* Esempio: aumenta su schermi molto piccoli per renderlo più visibile */
-  }
-}
