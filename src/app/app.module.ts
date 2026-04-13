@@ -107,6 +107,10 @@ registerLocaleData(localeIt);
     HasPermissionDirective,
   ],
   providers: [
+    {
+      provide: MAT_PAGINATOR_DEFAULT_OPTIONS,
+      useValue: { pageSize: 10 }
+    },
     { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: LOCALE_ID, useValue: 'it-IT' },
