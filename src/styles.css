@@ -24,6 +24,11 @@ body {
   min-height: 100vh;
 }
 
+.mat-form-field-label,
+.mat-input-element {
+  color: white !important;
+}
+
 /* Media Query di esempio per la dimensione del font (opzionale) */
 @media (max-width: 768px) {
   body {
