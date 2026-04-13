@@ -14,7 +14,7 @@ body {
   font-size: 1rem; /* Base di 16px per i 'rem' se non specificato altrove */
 
   background-color: #000; /* fallback scuro adatto alla nebulosa */
-  background-image: url('assets/Red_Spider_Nebula.png');
+  background-image: url('/assets/Red_Spider_Nebula.png');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
